@@ -1,12 +1,18 @@
 import requests
 import os
 
-def download_video(video_download_link,filename):
+folder_name = raw_input("folder name : ")
+
+
+def download_video(video_download_link, file_index):
+    '''Downloads the video and saves it'''
     video = requests.get(video_download_link)
-    file_ = str(filename) + '.mp4'
+    file_name = str(file_index) + '.mp4'
     os.chdir('/home/jayjeet/Videos')
-    with open(file_,'wb') as f:
+    os.mkdir(folder_name)
+    os.chdir(folder_name)
+    with open(file_name, 'wb') as f:
         f.write(video.content)
 
-download_video('https://www.youtube.com/watch?v=aDwCCUfNFug',1)
 
+download_video('https://www.youtube.com/watch?v=aDwCCUfNFug', 1)
