@@ -6,6 +6,7 @@ from pyvirtualdisplay import Display
 import hashlib
 import sys
 import requests
+import os
 
 file_index = 1
 BASE_URL = 'https://www.hoichoi.tv'
@@ -30,6 +31,7 @@ def download_video(video_download_link,file_index):
     '''Downloads the video and saves it'''
     video = requests.get(video_download_link)
     file_name = str(file_index) + '.mp4'
+    os.chdir('/home/jayjeet/Videos')
     with open(file_name,'wb') as f:
         f.write(video.content)
 
