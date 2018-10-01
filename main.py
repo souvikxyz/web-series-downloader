@@ -32,9 +32,6 @@ def download_video(video_download_link, file_index):
     '''Downloads the video and saves it'''
     video = requests.get(video_download_link)
     file_name = str(file_index) + '.mp4'
-    os.chdir('/home/jayjeet/Videos')
-    os.mkdir(folder_name)
-    os.chdir(folder_name)
     with open(file_name, 'wb') as f:
         f.write(video.content)
 
@@ -53,6 +50,9 @@ page_response = requests.get(URL)
 soup = BeautifulSoup(page_response.content, "html.parser")
 playlist_content = soup.find_all(class_='list__item__title')
 
+os.chdir('/home/jayjeet/Videos')
+os.mkdir(folder_name)
+os.chdir(folder_name)
 
 '''Traverse the playlist and downloads videos'''
 for video in playlist_content:
